@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.Core.Application.Services
 {
-    public class GenericService<SaveViewModel, ViewModel, Entity> : IGenericService<SaveViewModel, ViewModel, Entity>
-        where SaveViewModel : class
-        where ViewModel : class
+    public class GenericService<Dto, Entity> : IGenericService<Dto, Entity>
+        where Dto : class
         where Entity : class
     {
         private readonly IGenericRepository<Entity> _genericRepository;
@@ -22,25 +21,25 @@ namespace StudentManagement.Core.Application.Services
             _mapper = mapper;
         }
 
-        public virtual async Task<List<ViewModel>> GetAllAsync()
+        public virtual async Task<List<Dto>> GetAllAsync()
         {
             var entityList = await _genericRepository.GetAllAsync();
-            return _mapper.Map<List<ViewModel>>(entityList);
+            return _mapper.Map<List<Dto>>(entityList);
         }
-        public virtual async Task<SaveViewModel> GetByIdAsync(int id)
+        public virtual async Task<Dto> GetByIdAsync(int id)
         {
             Entity entity = await _genericRepository.GetByIdAsync(id);
-            SaveViewModel vm = _mapper.Map<SaveViewModel>(entity);
+            Dto vm = _mapper.Map<Dto>(entity);
             return vm;
         }
-        public virtual async Task<SaveViewModel> AddAsync(SaveViewModel vm)
+        public virtual async Task<Dto> AddAsync(Dto vm)
         {
             Entity entity = _mapper.Map<Entity>(vm);
             entity = await _genericRepository.AddAsync(entity);
-            SaveViewModel viewModel = _mapper.Map<SaveViewModel>(entity);
+            Dto viewModel = _mapper.Map<Dto>(entity);
             return viewModel;
         }
-        public virtual async Task UpdateAsync(SaveViewModel vm, int id)
+        public virtual async Task UpdateAsync(Dto vm, int id)
         {
             Entity entity = _mapper.Map<Entity>(vm);
             await _genericRepository.UpdateAsync(entity, id);

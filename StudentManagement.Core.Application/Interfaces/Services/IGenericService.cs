@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.Core.Application.Interfaces.Services
 {
-    public interface IGenericService<SaveViewModel, ViewModel, Entity>
-        where SaveViewModel : class
-        where ViewModel : class
+    public interface IGenericService<Dto, Entity>
+        where Dto : class
         where Entity : class
     {
-        Task<List<ViewModel>> GetAllAsync();
-        Task<SaveViewModel> GetByIdAsync(int id);
-        Task<SaveViewModel> AddAsync(SaveViewModel vm);
-        Task UpdateAsync(SaveViewModel vm, int id);
+        Task<List<Dto>> GetAllAsync();
+        Task<Dto> GetByIdAsync(int id);
+        Task<Dto> AddAsync(Dto vm);
+        Task UpdateAsync(Dto vm, int id);
         Task DeleteAsync(int id);
     }
 }

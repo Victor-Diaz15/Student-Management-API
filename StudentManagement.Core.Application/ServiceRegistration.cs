@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using StudentManagement.Core.Application.Interfaces.Services;
+using StudentManagement.Core.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,9 @@ namespace StudentManagement.Core.Application
 
             #region Services
 
-            //service.AddTransient<IUserService, UserService>();
+            service.AddTransient<IStudentService, StudentService>();
+            service.AddTransient<ISubjectService, SubjectService>();
+            service.AddTransient<IStudent_SubjectService, Student_SubjectService>();
 
             #endregion
         }

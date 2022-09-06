@@ -9,15 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CDA32D8D-5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{E79A1F9B-1132-4CBF-9AD7-3CBDA25090E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Core.Application", "StudentManagement.Core.Application\StudentManagement.Core.Application.csproj", "{FADE73BA-52C7-4F1B-8555-8C9A5C1B239C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagement.Core.Application", "StudentManagement.Core.Application\StudentManagement.Core.Application.csproj", "{FADE73BA-52C7-4F1B-8555-8C9A5C1B239C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Core.Domain", "StudentManagement.Core.Domain\StudentManagement.Core.Domain.csproj", "{E887323D-57C2-4A5C-9792-0D6ADB0F5BF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagement.Core.Domain", "StudentManagement.Core.Domain\StudentManagement.Core.Domain.csproj", "{E887323D-57C2-4A5C-9792-0D6ADB0F5BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Infrastructure.Persistence", "StudentManagement.Infrastructure.Persistence\StudentManagement.Infrastructure.Persistence.csproj", "{39AFB005-6DD4-464A-8198-333826F86CD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagement.Infrastructure.Persistence", "StudentManagement.Infrastructure.Persistence\StudentManagement.Infrastructure.Persistence.csproj", "{39AFB005-6DD4-464A-8198-333826F86CD8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{4CF3F0B9-1A73-4D8D-B6CC-1A6AC00DBB95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.WebApi", "StudentManagement.WebApi\StudentManagement.WebApi.csproj", "{01CD7910-881D-408B-BAD9-C343A15620D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagement.WebApi", "StudentManagement.WebApi\StudentManagement.WebApi.csproj", "{01CD7910-881D-408B-BAD9-C343A15620D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

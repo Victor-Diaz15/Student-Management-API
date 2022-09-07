@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace StudentManagement.Core.Application.Dtos
@@ -12,5 +13,7 @@ namespace StudentManagement.Core.Application.Dtos
         public int StudentId { get; set; }
         public int SubjectId { get; set; }
         public double Grade { get; set; }
+        [JsonIgnore]
+        public string Literal { get; set; }
     }
 }

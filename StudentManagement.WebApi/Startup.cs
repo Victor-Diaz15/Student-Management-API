@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using StudentManagement.Core.Application;
 using StudentManagement.Infrastructure.Persistence;
+using StudentManagement.WebApi.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,7 @@ namespace StudentManagement.WebApi
             services.AddApplicationLayer();
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StudentManagement.WebApi", Version = "v1" });
-            });
+            services.AddSwaggerExtension();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +42,11 @@ namespace StudentManagement.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StudentManagement.WebApi v1"));
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -53,6 +54,7 @@ namespace StudentManagement.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSwaggerExtension();
 
             app.UseEndpoints(endpoints =>
             {

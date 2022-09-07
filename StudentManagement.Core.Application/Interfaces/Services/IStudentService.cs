@@ -10,5 +10,6 @@ namespace StudentManagement.Core.Application.Interfaces.Services
 {
     public interface IStudentService : IGenericService<Student_Dto, Student>
     {
+        Task<List<Student_Dto>> GetAllWithFilters(Student_Filters_Dto filters);
     }
 }

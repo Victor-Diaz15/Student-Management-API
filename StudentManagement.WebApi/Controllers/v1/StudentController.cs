@@ -25,11 +25,11 @@ namespace StudentManagement.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Student_Dto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> GetAll()
+        public async Task<ActionResult> GetAll([FromQuery] Student_Filters_Dto filters)
         {
             try
             {
-                List<Student_Dto> students = await _studentService.GetAllAsync();
+                List<Student_Dto> students = await _studentService.GetAllWithFilters(filters);
 
                 if (students == null || students.Count == 0)
                 {

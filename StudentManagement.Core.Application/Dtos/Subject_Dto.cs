@@ -8,5 +8,7 @@ namespace StudentManagement.Core.Application.Dtos
 {
     public class Subject_Dto
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

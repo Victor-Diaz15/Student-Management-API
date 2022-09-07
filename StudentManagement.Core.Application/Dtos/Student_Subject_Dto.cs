@@ -8,5 +8,9 @@ namespace StudentManagement.Core.Application.Dtos
 {
     public class Student_Subject_Dto
     {
+        public int Id { get; set; }
+        public int StudentId { get; set; }
+        public int SubjectId { get; set; }
+        public double Grade { get; set; }
     }
 }

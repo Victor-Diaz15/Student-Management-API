@@ -22,6 +22,7 @@ namespace StudentManagement.Core.Application
             service.AddTransient<IStudentService, StudentService>();
             service.AddTransient<ISubjectService, SubjectService>();
             service.AddTransient<IStudent_SubjectService, Student_SubjectService>();
+            service.AddTransient<IStudent_ListService, Student_ListService>();
 
             #endregion
         }

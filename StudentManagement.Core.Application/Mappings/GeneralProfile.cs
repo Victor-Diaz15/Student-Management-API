@@ -37,6 +37,13 @@ namespace StudentManagement.Core.Application.Mappings
 
             #endregion
 
+            #region Student_List
+
+            CreateMap<Student_List, Student_List_Dto>()
+                .ReverseMap()
+                .ForMember(x => x.Modified, opt => opt.Ignore());
+            #endregion
+
             #endregion
         }
 

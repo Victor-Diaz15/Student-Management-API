@@ -125,7 +125,7 @@ namespace StudentManagement.Infrastructure.Persistence.Contexts
             #region Student_List
 
             mb.Entity<Student_List>()
-                .Property(p => p.StudentName)
+                .Property(p => p.StudentId)
                 .IsRequired();
 
             mb.Entity<Student_List>()

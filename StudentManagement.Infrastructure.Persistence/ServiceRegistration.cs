@@ -36,6 +36,7 @@ namespace StudentManagement.Infrastructure.Persistence
             service.AddTransient<IStudentRepository, StudentRepository>();
             service.AddTransient<ISubjectRepository, SubjectRepository>();
             service.AddTransient<IStudent_SubjectRepository, Student_SubjectRepository>();
+            service.AddTransient<IStudent_ListRepository, Student_ListRepository>();
 
             #endregion
         }

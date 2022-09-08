@@ -1,5 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudentManagement.Core.Domain.Common;
 using StudentManagement.Core.Domain.Entities;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace StudentManagement.Infrastructure.Persistence.Contexts
 {
@@ -10,9 +14,33 @@ namespace StudentManagement.Infrastructure.Persistence.Contexts
         {
         }
 
+        #region DbSets
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Student_Subject> Student_Subjects { get; set; }
+        public virtual DbSet<Student_List> Student_Lists { get; set; }
+
+        #endregion
+
+        //FLUENT API
+        public override Task<int> SaveChangesAsync(CancellationToken ct = new())
+        {
+            foreach (var entry in ChangeTracker.Entries<AuditableBaseEntity>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.Created = DateTime.Now;
+                        break;
+
+                    case EntityState.Modified:
+                        entry.Entity.Modified = DateTime.Now;
+                        break;
+                }
+            }
+
+            return base.SaveChangesAsync(ct);
+        }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
@@ -27,6 +55,9 @@ namespace StudentManagement.Infrastructure.Persistence.Contexts
             mb.Entity<Student_Subject>()
                 .ToTable("Student_Subjects");
 
+            mb.Entity<Student_List>()
+                .ToTable("Student_Lists");
+
             #endregion
 
             #region primary keys
@@ -38,6 +69,9 @@ namespace StudentManagement.Infrastructure.Persistence.Contexts
                 .HasKey(e => e.Id);
 
             mb.Entity<Student_Subject>()
+                .HasKey(e => e.Id);
+
+            mb.Entity<Student_List>()
                 .HasKey(e => e.Id);
 
             #endregion
@@ -84,6 +118,26 @@ namespace StudentManagement.Infrastructure.Persistence.Contexts
 
             mb.Entity<Student_Subject>()
                 .Property(p => p.Grade)
+                .IsRequired();
+
+            #endregion
+
+            #region Student_List
+
+            mb.Entity<Student_List>()
+                .Property(p => p.StudentName)
+                .IsRequired();
+
+            mb.Entity<Student_List>()
+                .Property(p => p.Present)
+                .IsRequired();
+
+            mb.Entity<Student_List>()
+                .Property(p => p.Excuse)
+                .IsRequired();
+
+            mb.Entity<Student_List>()
+                .Property(p => p.Ausence)
                 .IsRequired();
 
             #endregion

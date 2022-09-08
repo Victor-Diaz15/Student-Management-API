@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace StudentManagement.Core.Application.Dtos
 {
@@ -13,6 +10,7 @@ namespace StudentManagement.Core.Application.Dtos
         public bool Present { get; set; } = false;
         public bool Excuse { get; set; } = false;
         public bool Ausence { get; set; } = false;
+        [JsonIgnore]
         public DateTime Created { get; set; }
     }
 }

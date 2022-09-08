@@ -34,6 +34,8 @@ namespace StudentManagement.WebApi
 
             services.AddControllers();
             services.AddSwaggerExtension();
+            //Habilitar los cors 
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +62,9 @@ namespace StudentManagement.WebApi
             {
                 endpoints.MapControllers();
             });
+
+            //Habilitar cors en este metodo 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
         }
     }
 }

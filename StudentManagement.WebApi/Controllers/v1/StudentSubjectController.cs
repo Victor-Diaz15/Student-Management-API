@@ -45,14 +45,24 @@ namespace StudentManagement.WebApi.Controllers.v1
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Student_Subject_Dto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(StudentSubjectRes_Dto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetById(int id)
         {
             try
             {
-                Student_Subject_Dto studentSubject = await _student_SubjectService.GetByIdAsync(id);
+                List<StudentSubjectRes_Dto> studentSubjects = await _student_SubjectService.GetAllWithInclude();
+
+                StudentSubjectRes_Dto studentSubject = new();
+                foreach (var item in studentSubjects)
+                {
+                    if (item.Id == id)
+                    {
+                        studentSubject = item;
+                        break;
+                    }
+                }
 
                 if (studentSubject == null)
                 {

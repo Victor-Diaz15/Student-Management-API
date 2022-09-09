@@ -110,7 +110,13 @@ namespace StudentManagement.WebApi.Controllers.v1
                 {
                     return BadRequest();
                 }
-                await _studentListService.UpdateAsync(updateList, id);
+                Student_List_Dto student = await _studentListService.GetByIdAsync(id);
+                student.Id = updateList.Id;
+                student.StudentId = updateList.StudentId;
+                student.Present = updateList.Present;
+                student.Excuse = updateList.Excuse;
+                student.Ausence = updateList.Ausence;
+                await _studentListService.UpdateAsync(student, id);
                 return Ok(updateList);
             }
             catch (Exception ex)

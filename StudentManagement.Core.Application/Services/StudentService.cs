@@ -14,10 +14,12 @@ namespace StudentManagement.Core.Application.Services
     public class StudentService : GenericService<Student_Dto, Student>, IStudentService
     {
         private readonly IStudentRepository _repo;
+        private readonly IStudent_SubjectRepository _student_SubjectRepo;
         private readonly IMapper _mapper;
-        public StudentService(IStudentRepository repo, IMapper mapper) : base(repo, mapper)
+        public StudentService(IStudentRepository repo, IStudent_SubjectRepository student_SubjectRepo, IMapper mapper) : base(repo, mapper)
         {
             _repo = repo;
+            _student_SubjectRepo = student_SubjectRepo;
             _mapper = mapper;
         }
 
@@ -42,5 +44,18 @@ namespace StudentManagement.Core.Application.Services
             return listStudents;
         }
 
+        public async override Task DeleteAsync(int id)
+        {
+            // Eliminando las studentSubjects del studiante.
+            List<Student_Subject> stSList = await _student_SubjectRepo.GetAllAsync();
+            foreach (Student_Subject item in stSList)
+            {
+                if (item.StudentId == id)
+                {
+                    await _student_SubjectRepo.DeleteAsync(item);
+                }
+            }
+            await base.DeleteAsync(id);
+        }
     }
 }

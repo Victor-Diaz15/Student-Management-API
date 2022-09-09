@@ -33,10 +33,9 @@ namespace StudentManagement.Core.Application.Services
             foreach (var item in data)
             {
                 StudentListRes_Dto stRes = new();
-                var student = await _studentRepo.GetByIdAsync(item.StudentId);
                 stRes.Id = item.Id;
                 stRes.StudentId = item.StudentId;
-                stRes.StudentName = $"{student.FirstName} {student.LastName}";
+                stRes.StudentName = item.StudentName;
                 stRes.Present = item.Present;
                 stRes.Excuse = item.Excuse;
                 stRes.Ausence = item.Ausence;
@@ -46,6 +45,13 @@ namespace StudentManagement.Core.Application.Services
             }
 
             return res;
+        }
+
+        public async override Task<Student_List_Dto> AddAsync(Student_List_Dto vm)
+        {
+            var student = await _studentRepo.GetByIdAsync(vm.StudentId);
+            vm.StudentName = $"{student.FirstName} {student.LastName}";
+            return await base.AddAsync(vm);
         }
     }
 }

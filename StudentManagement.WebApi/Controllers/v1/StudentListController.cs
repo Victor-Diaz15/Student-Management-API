@@ -22,14 +22,14 @@ namespace StudentManagement.WebApi.Controllers.v1
         //endpoints
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Student_List_Dto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(StudentListRes_Dto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAll()
         {
             try
             {
-                List<Student_List_Dto> studentList = await _studentListService.GetAllAsync();
+                List<StudentListRes_Dto> studentList = await _studentListService.GetAllWithInclude();
 
                 if (studentList == null || studentList.Count == 0)
                 {
@@ -45,14 +45,24 @@ namespace StudentManagement.WebApi.Controllers.v1
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Student_List_Dto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(StudentListRes_Dto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetById(int id)
         {
             try
             {
-                Student_List_Dto student = await _studentListService.GetByIdAsync(id);
+                List<StudentListRes_Dto> studentList = await _studentListService.GetAllWithInclude();
+                StudentListRes_Dto student = new();
+
+                foreach (var item in studentList)
+                {
+                    if (item.Id == id)
+                    {
+                        student = item;
+                        break;
+                    }
+                }
 
                 if (student == null)
                 {

@@ -10,6 +10,6 @@ namespace StudentManagement.Core.Application.Interfaces.Services
 {
     public interface IStudent_ListService : IGenericService<Student_List_Dto, Student_List>
     {
-
+        Task<List<StudentListRes_Dto>> GetAllWithInclude();
     }
 }

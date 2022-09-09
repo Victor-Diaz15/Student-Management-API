@@ -67,7 +67,30 @@ namespace StudentManagement.Core.Application.Services
             {
                 vm.Literal = Literals.A.ToString();
             }
+
             return base.AddAsync(vm);
+        }
+
+        public override Task UpdateAsync(Student_Subject_Dto vm, int id)
+        {
+            if (vm.Grade <= 69)
+            {
+                vm.Literal = Literals.F.ToString();
+            }
+            else if (vm.Grade <= 79)
+            {
+                vm.Literal = Literals.C.ToString();
+            }
+            else if (vm.Grade <= 89)
+            {
+                vm.Literal = Literals.B.ToString();
+            }
+            else if (vm.Grade <= 100)
+            {
+                vm.Literal = Literals.A.ToString();
+            }
+
+            return base.UpdateAsync(vm, id);
         }
     }
 }

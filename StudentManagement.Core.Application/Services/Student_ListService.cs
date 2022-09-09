@@ -32,6 +32,7 @@ namespace StudentManagement.Core.Application.Services
 
             foreach (var item in data)
             {
+                
                 StudentListRes_Dto stRes = new();
                 stRes.Id = item.Id;
                 stRes.StudentId = item.StudentId;
@@ -40,6 +41,16 @@ namespace StudentManagement.Core.Application.Services
                 stRes.Excuse = item.Excuse;
                 stRes.Ausence = item.Ausence;
                 stRes.Created = item.Created;
+
+                var student = await _studentRepo.GetByIdAsync(item.StudentId);
+                if (student != null)
+                {
+                    stRes.StudentExist = true;
+                }
+                else
+                {
+                    stRes.StudentExist = false;
+                }
 
                 res.Add(stRes);
             }

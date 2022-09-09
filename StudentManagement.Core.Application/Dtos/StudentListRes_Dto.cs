@@ -11,6 +11,7 @@ namespace StudentManagement.Core.Application.Dtos
         public bool Present { get; set; } = false;
         public bool Excuse { get; set; } = false;
         public bool Ausence { get; set; } = false;
+        public bool StudentExist { get; set; }
         public DateTime Created { get; set; }
     }
 }

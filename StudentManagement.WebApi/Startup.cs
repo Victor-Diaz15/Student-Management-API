@@ -41,6 +41,12 @@ namespace StudentManagement.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Habilitar cors en este metodo
+            app.UseCors(options =>
+            options.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -62,9 +68,6 @@ namespace StudentManagement.WebApi
             {
                 endpoints.MapControllers();
             });
-
-            //Habilitar cors en este metodo 
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
         }
     }
 }

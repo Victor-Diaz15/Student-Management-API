@@ -38,7 +38,9 @@ namespace StudentManagement.Core.Application.Services
                 var student = await _studentRepo.GetByIdAsync(item.StudentId);
                 var subject = await _subjectRepo.GetByIdAsync(item.SubjectId);
                 stRes.Id = item.Id;
+                stRes.StudentId = item.StudentId;
                 stRes.StudentName = $"{student.FirstName} {student.LastName}";
+                stRes.SubjectId = item.SubjectId;
                 stRes.SubjectName = subject.Name;
                 stRes.Grade = item.Grade;
                 stRes.Literal = item.Literal;
